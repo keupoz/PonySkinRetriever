@@ -1,7 +1,7 @@
 const
 Express = require('express'),
 App     = Express(),
-PORT    = 3000,
+PORT    = process.env.PORT || 3000,
 
 HTTP      = require('http'),
 Request   = require('request'),
