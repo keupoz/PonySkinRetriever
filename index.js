@@ -3,7 +3,6 @@ Express = require('express'),
 App     = Express(),
 PORT    = process.env.PORT || 3000,
 
-HTTP      = require('http'),
 Request   = require('request'),
 API_URL   = 'https://api.mojang.com/users/profiles/minecraft/%s',
 SKINS_URL = 'http://skins.voxelmodpack.com/skins/%s.png';
@@ -57,8 +56,6 @@ App.get('/:nickname', function (request, response) {
 				});
 			});
 	});
-	
-	//response.set('Access-Control-Allow-Origin', '*').send(nickname);
 });
 
 App.listen(PORT, function (err) {
