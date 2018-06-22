@@ -13,6 +13,14 @@ function getURL (pattern, replace) {
 }
 
 
+App.use(function (request, response, next) {
+	response.set({
+		'Access-Control-Allow-Origin': '*',
+		'Access-Control-Expose-Headers': 'X-Nickname'
+	});
+ 	next();
+});
+
 App.get('/', function (request, response) {
 	console.log('Request with no nickname provided');
 	
@@ -27,11 +35,6 @@ App.get('/:nickname', function (request, response) {
 	let nickname = request.params.nickname;
 	
 	console.log('Requested nickname: ' + nickname);
-	
-	response.set({
-		'Access-Control-Allow-Origin': '*',
-		'Access-Control-Expose-Headers': 'X-Nickname'
-	});
 	
 	Request(getURL(API_URL, nickname), {json: true}, function (error, apiResponse, body) {
 		if (error) throw new Error(error);
